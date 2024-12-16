@@ -7,6 +7,11 @@ def es_primo(n):
             return False
     return True
 
+# Función para determinar si un número es palindrómico
+def es_palindromo(n):
+    n_str = str(n)  # Convertimos el número a string
+    return n_str == n_str[::-1]  # Verificamos si el número leído al revés es igual
+
 # Función para generar una lista de números primos en un rango dado
 def generar_primos(limite):
     primos = []
@@ -15,20 +20,17 @@ def generar_primos(limite):
             primos.append(n)  # Agregar a la lista si es primo
     return primos
 
-# Función para imprimir los nodos consecutivos en la lista de primos
-def imprimir_nodos_consecutivos(limite):
+# Función para recorrer la lista de primos e imprimir si 'n' es palindrómico
+def verificar_palindromos_en_lista(limite):
     primos = generar_primos(limite)  # Generamos la lista de primos
-    print("Los nodos de primos consecutivos son:")
-    for i in range(len(primos) - 1):  # Recorrer la lista hasta el penúltimo nodo
-        n1 = primos[i]
-        n1_1 = primos[i + 1]
-        print(f"({n1}, {n1_1})")  # Imprimimos el nodo actual y el siguiente
+    print("Verificación de números primos palindrómicos:")
+    for i in range(len(primos)):  # Recorremos la lista usando índices
+        n = primos[i]  # Número actual en la lista
+        if es_palindromo(n):  # Verificar si el número actual es palindrómico
+            print(f"{n} es palindrómico")
+        else:
+            print(f"{n} no es palindrómico")
 
-# Programa principal
-def main():
-    limite = int(input("Ingresa el límite superior del rango: "))
-    imprimir_nodos_consecutivos(limite)
 
-# Ejecutar el programa
-if __name__ == "__main__":
-    main()
+limite = int(input("Ingresa el límite superior del rango: "))
+verificar_palindromos_en_lista(limite)
